@@ -1,0 +1,36 @@
+.App {
+  min-height: 100vh;
+  padding: 20px 0;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.app-header h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.app-header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.controls {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.add-btn {
+  background: linear-gradient(45deg, #00b894, #00a085);
+  font-size: 18px;
+  padding: 12px 30px;
+}
+
+.add-btn:hover {
+  background: linear-gradient(45deg, #00a085, #008f7a);
+}

@@ -1,0 +1,86 @@
+.add-movie-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.add-movie-container h2 {
+  color: white;
+  margin-bottom: 25px;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.add-movie-form {
+  display: grid;
+  gap: 20px;
+}
+
+.form-group input.error,
+.form-group textarea.error {
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+}
+
+.error-message {
+  color: #ff6b6b;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  display: block;
+  font-weight: 500;
+}
+
+.rating-input-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rating-input-container input {
+  flex: 1;
+}
+
+.rating-unit {
+  color: #666;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.form-actions {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.submit-btn {
+  background: linear-gradient(45deg, #00b894, #00a085);
+  font-size: 18px;
+  padding: 12px 40px;
+  min-width: 150px;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(45deg, #00a085, #008f7a);
+}
+
+@media (max-width: 768px) {
+  .add-movie-container {
+    padding: 20px;
+  }
+
+  .add-movie-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .rating-input-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 5px;
+  }
+
+  .rating-unit {
+    text-align: center;
+  }
+}
