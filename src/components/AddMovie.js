@@ -7,6 +7,7 @@ const AddMovie = ({ onAddMovie }) => {
     description: "",
     posterURL: "",
     rating: 5.0,
+    trailerURL: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -26,6 +27,12 @@ const AddMovie = ({ onAddMovie }) => {
       newErrors.posterURL = "Poster URL is required";
     } else if (!isValidURL(formData.posterURL)) {
       newErrors.posterURL = "Please enter a valid URL";
+    }
+
+    if (!formData.trailerURL.trim()) {
+      newErrors.trailerURL = "Trailer embed URL is required";
+    } else if (!isValidURL(formData.trailerURL)) {
+      newErrors.trailerURL = "Please enter a valid URL";
     }
 
     if (formData.rating < 0 || formData.rating > 10) {
@@ -55,6 +62,7 @@ const AddMovie = ({ onAddMovie }) => {
         description: "",
         posterURL: "",
         rating: 5.0,
+        trailerURL: "",
       });
       setErrors({});
     }
@@ -125,6 +133,22 @@ const AddMovie = ({ onAddMovie }) => {
           />
           {errors.posterURL && (
             <span className="error-message">{errors.posterURL}</span>
+          )}
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="trailerURL">Trailer Embed URL *</label>
+          <input
+            type="url"
+            id="trailerURL"
+            name="trailerURL"
+            value={formData.trailerURL}
+            onChange={handleChange}
+            placeholder="https://www.youtube.com/embed/..."
+            className={errors.trailerURL ? "error" : ""}
+          />
+          {errors.trailerURL && (
+            <span className="error-message">{errors.trailerURL}</span>
           )}
         </div>
 

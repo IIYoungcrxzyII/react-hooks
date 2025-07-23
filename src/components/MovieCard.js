@@ -1,11 +1,23 @@
 import React from "react";
 import "./MovieCard.css";
+import { useNavigate } from "react-router-dom";
 
 const MovieCard = ({ movie }) => {
-  const { title, description, posterURL, rating } = movie;
+  const { id, title, description, posterURL, rating } = movie;
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/movie/${id}`);
+  };
 
   return (
-    <div className="movie-card">
+    <div
+      className="movie-card clickable"
+      onClick={handleClick}
+      tabIndex={0}
+      role="button"
+      aria-pressed="false"
+    >
       <div className="movie-poster">
         <img src={posterURL} alt={title} />
         <div className="movie-rating">

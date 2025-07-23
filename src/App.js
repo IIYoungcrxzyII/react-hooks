@@ -3,6 +3,8 @@ import "./App.css";
 import MovieList from "./components/MovieList";
 import Filter from "./components/Filter";
 import AddMovie from "./components/AddMovie";
+import MovieDetails from "./components/MovieDetails";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   const [movies, setMovies] = useState([
@@ -14,6 +16,7 @@ function App() {
       posterURL:
         "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg",
       rating: 8.8,
+      trailerURL: "https://www.youtube.com/embed/YoHD9XEInc0",
     },
     {
       id: 2,
@@ -23,6 +26,7 @@ function App() {
       posterURL:
         "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg",
       rating: 9.3,
+      trailerURL: "https://www.youtube.com/embed/6hB3S9bIaco",
     },
     {
       id: 3,
@@ -32,6 +36,7 @@ function App() {
       posterURL:
         "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg",
       rating: 9.0,
+      trailerURL: "https://www.youtube.com/embed/EXeTwQWrcwY",
     },
   ]);
 
@@ -53,34 +58,45 @@ function App() {
   });
 
   return (
-    <div className="App">
-      <div className="container">
-        <header className="app-header">
-          <h1>🎬 My Movie Collection</h1>
-          <p>Discover and manage your favorite movies and TV shows</p>
-        </header>
-
-        <div className="controls">
-          <button
-            className="btn add-btn"
-            onClick={() => setShowAddForm(!showAddForm)}
-          >
-            {showAddForm ? "Cancel" : "Add New Movie"}
-          </button>
+    <Router>
+      <div className="App">
+        <div className="container">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <header className="app-header">
+                    <h1>🎬 My Movie Collection</h1>
+                    <p>Discover and manage your favorite movies and TV shows</p>
+                  </header>
+                  <div className="controls">
+                    <button
+                      className="btn add-btn"
+                      onClick={() => setShowAddForm(!showAddForm)}
+                    >
+                      {showAddForm ? "Cancel" : "Add New Movie"}
+                    </button>
+                  </div>
+                  {showAddForm && <AddMovie onAddMovie={addMovie} />}
+                  <Filter
+                    filterTitle={filterTitle}
+                    setFilterTitle={setFilterTitle}
+                    filterRating={filterRating}
+                    setFilterRating={setFilterRating}
+                  />
+                  <MovieList movies={filteredMovies} />
+                </>
+              }
+            />
+            <Route
+              path="/movie/:id"
+              element={<MovieDetails movies={movies} />}
+            />
+          </Routes>
         </div>
-
-        {showAddForm && <AddMovie onAddMovie={addMovie} />}
-
-        <Filter
-          filterTitle={filterTitle}
-          setFilterTitle={setFilterTitle}
-          filterRating={filterRating}
-          setFilterRating={setFilterRating}
-        />
-
-        <MovieList movies={filteredMovies} />
       </div>
-    </div>
+    </Router>
   );
 }
 
